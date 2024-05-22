@@ -31,7 +31,6 @@ const FooterItems = [
 ]
 
 const SidebarFooter = ({team}: {team: TeamWithFiles }) => {
-
   return (
     <div className='space-y-5 px-2'>
       <div className='flex flex-col mx-1'>

@@ -15,6 +15,7 @@ const CreateFileButton = ({team}: {team: TeamWithFiles }) => {
 
     const res = await axios.post(`/api/file/`, {teamId: team.id})    
     router.push(`/workspace/${res.data.id}`)
+    router.refresh()
   }
   return (
     <Button onClick={() => createFile()} variant='primary' className='w-full'>New File</Button>

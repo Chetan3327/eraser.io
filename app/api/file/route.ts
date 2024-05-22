@@ -14,6 +14,7 @@ export async function POST(req: Request){
     const file = await prisma.file.create({
       data: {
         teamId: teamId,
+        authorId: user.id
       }
     })
     return NextResponse.json(file, {status: 201})

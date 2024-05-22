@@ -2,7 +2,7 @@ import { currentUser } from '@/lib/current-user'
 import prisma from '@/lib/prisma'
 import { redirect } from 'next/navigation'
 import React from 'react'
-import DashboardHeader from './dashboard-header'
+import DashboardTable from './dashboard-table'
 
 const Dashboard = async ({teamId}: {teamId: string}) => {
   const user = await currentUser()
@@ -14,7 +14,11 @@ const Dashboard = async ({teamId}: {teamId: string}) => {
       id: teamId
     },
     include: {
-      files: true
+      files: {
+        include: {
+          author: true
+        }
+      }
     }
   })
   if(!team){
@@ -22,9 +26,11 @@ const Dashboard = async ({teamId}: {teamId: string}) => {
   }
   return (
     <div className='ml-72 mt-14'>
-      {team.files.length === 0 && (<p className='text-muted-foreground'>Your list is empty</p>)}
-
-      <pre>{JSON.stringify(team.files, null, 2)}</pre>
+      <DashboardTable team={team} />
+      {team.files.length === 0 && (
+      <div className='text-muted-foreground/50 font-bold pt-12 flex justify-center items-center'>
+        Your list is empty
+      </div>)}
     </div>
   )
 }

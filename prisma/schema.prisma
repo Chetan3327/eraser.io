@@ -53,6 +53,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   teams         Team[]
+  files         File[]
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -90,4 +91,10 @@ model File {
 
   teamId String @db.ObjectId
   team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
+
+  authorId String @db.ObjectId
+  author   User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
