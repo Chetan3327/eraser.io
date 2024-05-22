@@ -12,14 +12,19 @@ const Dashboard = async ({teamId}: {teamId: string}) => {
   const team = await prisma.team.findUnique({
     where: {
       id: teamId
+    },
+    include: {
+      files: true
     }
   })
   if(!team){
     return redirect('/dashboard')
   }
   return (
-    <div className='ml-72'>
-      <DashboardHeader />
+    <div className='ml-72 mt-14'>
+      {team.files.length === 0 && (<p className='text-muted-foreground'>Your list is empty</p>)}
+
+      <pre>{JSON.stringify(team.files, null, 2)}</pre>
     </div>
   )
 }

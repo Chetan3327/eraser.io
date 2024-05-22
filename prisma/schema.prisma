@@ -85,8 +85,8 @@ model File {
   id         String  @id @default(auto()) @map("_id") @db.ObjectId
   name       String  @default("Untitled File")
   archive    Boolean @default(false)
-  document   String  @db.String
-  whiteboard String  @db.String
+  document   String  @default("") @db.String
+  whiteboard String  @default("") @db.String
 
   teamId String @db.ObjectId
   team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)

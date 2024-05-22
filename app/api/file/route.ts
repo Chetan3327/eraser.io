@@ -1,5 +1,6 @@
 import { currentUser } from "@/lib/current-user";
 import prisma from "@/lib/prisma";
+import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
 export async function POST(req: Request){
@@ -9,15 +10,15 @@ export async function POST(req: Request){
       return new NextResponse("Unauthorized", {status: 401})
     }
 
-    const {name} = await req.json()
-    const team = await prisma.team.create({
+    const {teamId} = await req.json()
+    const file = await prisma.file.create({
       data: {
-        name: name,
-        creatorId: user.id
+        teamId: teamId,
       }
     })
-    return NextResponse.json(team, {status: 201})
+    return NextResponse.json(file, {status: 201})
   } catch (error) {
-    return NextResponse.json({message: 'Error creating team'}, {status: 500})
+    console.log(error)
+    return NextResponse.json({message: 'Error creating file'}, {status: 500})
   }
 }

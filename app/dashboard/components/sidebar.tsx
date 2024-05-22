@@ -19,6 +19,9 @@ const Sidebar = async ({teamId}: {teamId: string}) => {
   const team = await prisma.team.findUnique({
     where: {
       id: teamId
+    },
+    include: {
+      files: true
     }
   })
   if(!team){
@@ -29,7 +32,7 @@ const Sidebar = async ({teamId}: {teamId: string}) => {
     <div className='fixed flex flex-col left-0 top-0 border-r h-full w-72 p-3'>
       <SidebarHeader currentTeam={team} user={user} teams={teams} />  
       <div className='flex flex-1' />
-      <SidebarFooter />
+      <SidebarFooter team={team} />
     </div>
   )
 }
