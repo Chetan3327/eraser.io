@@ -45,7 +45,7 @@ const SidebarHeader = ({teams, user, currentTeam}: {teams: Team[], user: User, c
             {user.name && (<AvatarFallback>{user.name[0] + user.name[1]}</AvatarFallback>)}
           </Avatar>
           <div className='ml-2 flex flex-col'>
-            <span className='text-sm font-bold text-white'>{user.name}</span>
+            <span className='text-sm font-bold dark:text-white'>{user.name}</span>
             <span className='text-xs text-muted-foreground'>{user.email}</span>
           </div>
         </DropdownMenuItem>

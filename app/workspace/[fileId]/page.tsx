@@ -1,11 +1,12 @@
-import RenameFileForm from '@/components/form/rename-file-form'
-import Logo from '@/components/logo'
-import { Button } from '@/components/ui/button'
 import { currentUser } from '@/lib/current-user'
 import prisma from '@/lib/prisma'
-import { Link } from 'lucide-react'
 import { redirect } from 'next/navigation'
-import React from 'react'
+import Logo from '@/components/logo'
+import RenameFileForm from '@/components/form/rename-file-form'
+import { Button } from '@/components/ui/button'
+import { Link } from 'lucide-react'
+import Editor from './components/editor'
+import Canvas from './components/canvas'
 
 const page = async ({params}: {params: {fileId: string}}) => {
   const user = await currentUser()
@@ -23,14 +24,16 @@ const page = async ({params}: {params: {fileId: string}}) => {
   return (
     <>
       {/* workspace header */}
-      <div className='border-b h-14 w-full flex items-center justify-between z-10 bg-background px-5'>
+      <div className='border-b fixed h-14 w-full flex items-center justify-between z-10 bg-background px-5'>
         <div className='flex items-center'>
           <Logo />
           <RenameFileForm file={file} />
         </div>
 
         <div>
-
+          <Button variant='outline' className='rounded-none'>Document</Button>
+          <Button variant='secondary' className='rounded-none'>Both</Button>
+          <Button variant='outline' className='rounded-none'>Canavs</Button>
         </div>
 
         <div>
@@ -38,9 +41,13 @@ const page = async ({params}: {params: {fileId: string}}) => {
         </div>
       </div>
 
-      <div>
-        <div>editor</div>
-        <div>canvas</div>
+      <div className='flex'>
+        <div className='w-[50%] h-screen pt-14'>
+          {/* <Editor /> */}
+        </div>
+        <div className='w-[50%] h-screen pt-14'>
+          {/* <Canvas /> */}
+        </div>
       </div>
     </>
   )
