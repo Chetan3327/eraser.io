@@ -2,10 +2,7 @@ import CreateFileButton from '@/components/form/create-file-form'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
 import { TeamWithFiles } from '@/types'
-import { File, Team } from '@prisma/client'
-import axios from 'axios'
 import { Archive, Computer, Flag, Layers, Lock } from 'lucide-react'
-import React from 'react'
 
 const FooterItems = [
   {
@@ -43,7 +40,7 @@ const SidebarFooter = ({team}: {team: TeamWithFiles }) => {
       
       <CreateFileButton team={team} />
 
-      <div className='flex flex-col space-y-2'>
+      <div className='flex flex-col space-y-1'>
         <Progress value={team.files.length * 20} />
         <span className='text-sm'><b>{team.files.length}</b> out <b>5</b> files used</span>
         <span className='text-sm'>Upgrade your plan for unlimited access.</span>

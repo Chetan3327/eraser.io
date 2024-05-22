@@ -17,6 +17,9 @@ const Dashboard = async ({teamId}: {teamId: string}) => {
       files: {
         include: {
           author: true
+        },
+        orderBy: {
+          updatedAt: 'desc'
         }
       }
     }

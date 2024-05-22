@@ -7,6 +7,7 @@ import { signOut } from 'next-auth/react'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
+import Logo from '@/components/logo'
 
 const SidebarHeader = ({teams, user, currentTeam}: {teams: Team[], user: User, currentTeam: Team}) => {
   const router = useRouter()
@@ -14,7 +15,7 @@ const SidebarHeader = ({teams, user, currentTeam}: {teams: Team[], user: User, c
     <DropdownMenu>
       <DropdownMenuTrigger className="focus:outline-none" asChild>
         <button className="w-full text-md rounded-lg font-bold px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2 hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition">
-          {currentTeam.name}
+          <Logo size={30} /> {currentTeam.name}
           <ChevronDown className="h-5 w-5 ml-auto" />
         </button>
       </DropdownMenuTrigger>
@@ -39,7 +40,7 @@ const SidebarHeader = ({teams, user, currentTeam}: {teams: Team[], user: User, c
           Logout
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="px-3 p-2 text-sm cursor-pointer">
+        <DropdownMenuItem className="px-3 p-2 text-sm">
           <Avatar>
             <AvatarImage src={user.image || ''} alt='user profile' />
             {user.name && (<AvatarFallback>{user.name[0] + user.name[1]}</AvatarFallback>)}

@@ -13,11 +13,11 @@ const page = async ({params}: {params: {teamId: string}}) => {
     return redirect('/dashboard')
   }
   return (
-    <div>
+    <>
       <Sidebar teamId={params.teamId} />
       <DashboardHeader />
       <Dashboard teamId={params.teamId} />
-    </div>
+    </>
   )
 }
 
