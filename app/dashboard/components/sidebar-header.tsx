@@ -8,20 +8,20 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 
-const SidebarHeader = ({teams, user, teamId}: {teams: Team[], user: User, teamId: string}) => {
+const SidebarHeader = ({teams, user, currentTeam}: {teams: Team[], user: User, currentTeam: Team}) => {
   const router = useRouter()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="focus:outline-none" asChild>
         <button className="w-full text-md rounded-lg font-bold px-3 flex items-center h-12 border-neutral-200 dark:border-neutral-800 border-b-2 hover:bg-zinc-700/10 dark:hover:bg-zinc-700/50 transition">
-          {teams[0].name}
+          {currentTeam.name}
           <ChevronDown className="h-5 w-5 ml-auto" />
         </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-full text-xs font-medium text-black dark:text-neutral-400 space-y-[2px]">
         {teams.map((team) => {
           return(
-          <DropdownMenuItem key={team.id} onClick={() => router.push(`/dashboard/${team.id}`)} className={cn("px-3 p-2 text-sm cursor-pointer w-full", team.id === teamId && "bg-blue-600 text-white")}>
+          <DropdownMenuItem key={team.id} onClick={() => router.push(`/dashboard/${team.id}`)} className={cn("px-3 p-2 text-sm cursor-pointer w-full", team.id === currentTeam.id && "bg-blue-600 text-white")}>
             {team.name}
           </DropdownMenuItem>)
         })}

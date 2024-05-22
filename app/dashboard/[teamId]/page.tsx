@@ -1,32 +1,20 @@
-import React from 'react'
-import Sidebar from '../components/sidebar'
-import prisma from '@/lib/prisma'
 import { currentUser } from '@/lib/current-user'
 import { redirect } from 'next/navigation'
+import Dashboard from '../components/dashboard'
+import Sidebar from '../components/sidebar'
 
 const page = async ({params}: {params: {teamId: string}}) => {
   const user = await currentUser()
   if(!user){
     return redirect('/login')
   }
-  const teams = await prisma.team.findMany({
-    where: {
-      creatorId: user.id
-    }
-  })
-
-  const team = await prisma.team.findUnique({
-    where: {
-      id: params.teamId
-    }
-  })
-  
+  if(!params.teamId){
+    return redirect('/dashboard')
+  }
   return (
     <div>
       <Sidebar teamId={params.teamId} />
-      <div className='ml-72'>
-        {team?.name}
-      </div>
+      <Dashboard teamId={params.teamId} />
     </div>
   )
 }

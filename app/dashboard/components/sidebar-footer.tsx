@@ -39,8 +39,8 @@ const SidebarFooter = () => {
       <Button variant='primary' className='w-full' >New File</Button>
 
       <div className='flex flex-col space-y-2'>
-        <Progress />
-        <span className='text-sm'>0 out 5 files used</span>
+        <Progress value={80} />
+        <span className='text-sm'><b>4</b> out <b>5</b> files used</span>
         <span className='text-sm'>Upgrade your plan for unlimited access.</span>
       </div>
     </div>
