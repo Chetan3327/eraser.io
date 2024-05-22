@@ -47,7 +47,7 @@ const page = () => {
         return;
       }
       if(response?.ok){
-        router.push("/");
+        router.push("/dashboard");
       }
     } catch (error) {
       console.log(error)
@@ -70,7 +70,7 @@ const page = () => {
             render={(({field}) => (
               <FormItem>
                 <FormControl>
-                  <Input disabled={isLoading} className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-emerald-400' placeholder='Email Address' {...field} />
+                  <Input disabled={isLoading} className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary' placeholder='Email Address' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -82,7 +82,7 @@ const page = () => {
             render={(({field}) => (
               <FormItem>
                 <FormControl>
-                  <Input disabled={isLoading} className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-emerald-400' placeholder='Enter Password' type='password' {...field} />
+                  <Input disabled={isLoading} className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary' placeholder='Enter Password' type='password' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -92,7 +92,7 @@ const page = () => {
         </form>
       </Form>
       <div className='text-center'>
-        Don't have an account? <span onClick={() => router.push('/register')} className={cn(buttonVariants({variant: 'link'}), 'text-emerald-500 cursor-pointer')}>Sign Up</span>
+        Don't have an account? <span onClick={() => router.push('/register')} className={cn(buttonVariants({variant: 'link'}))}>Sign Up</span>
       </div>
       <Separator className='h-[2px]' />
       <div className='space-y-2'>
