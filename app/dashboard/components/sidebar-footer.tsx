@@ -1,0 +1,50 @@
+import { Button } from '@/components/ui/button'
+import { Progress } from '@/components/ui/progress'
+import { Archive, Computer, Flag, Layers, Lock } from 'lucide-react'
+import React from 'react'
+
+const FooterItems = [
+  {
+    label: "Getting Started",
+    icon: Flag
+  },
+  {
+    label: "Team Templates",
+    icon: Layers
+  },
+  {
+    label: "Github Sync",
+    icon: Computer
+  },
+  {
+    label: "Private Files",
+    icon: Lock
+  },
+  {
+    label: "Archive",
+    icon: Archive
+  },
+]
+
+const SidebarFooter = () => {
+  return (
+    <div className='space-y-5 px-2'>
+      <div className='flex flex-col mx-1'>
+        {FooterItems.map((item) => {
+          return(
+            <Button key={item.label} size='sm' variant='ghost' className='text-left text-sm py-0'><item.icon className='w-4 h-4 ml-0 mr-2' /> {item.label} <span  className='mr-auto'/> </Button>
+          )
+        })}
+      </div>
+      <Button variant='primary' className='w-full' >New File</Button>
+
+      <div className='flex flex-col space-y-2'>
+        <Progress />
+        <span className='text-sm'>0 out 5 files used</span>
+        <span className='text-sm'>Upgrade your plan for unlimited access.</span>
+      </div>
+    </div>
+  )
+}
+
+export default SidebarFooter

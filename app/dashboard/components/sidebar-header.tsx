@@ -1,10 +1,15 @@
+"use client"
 import React from 'react'
-import Logo from '@/components/logo'
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
 import { ChevronDown, LogOut, Settings, Users } from 'lucide-react'
-import { Team } from '@prisma/client'
+import { Team, User } from '@prisma/client'
+import { signOut } from 'next-auth/react'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { cn } from '@/lib/utils'
+import { useRouter } from 'next/navigation'
 
-const SidebarHeader = ({teams}: {teams: Team[]}) => {
+const SidebarHeader = ({teams, user, teamId}: {teams: Team[], user: User, teamId: string}) => {
+  const router = useRouter()
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="focus:outline-none" asChild>
@@ -16,7 +21,7 @@ const SidebarHeader = ({teams}: {teams: Team[]}) => {
       <DropdownMenuContent className="w-full text-xs font-medium text-black dark:text-neutral-400 space-y-[2px]">
         {teams.map((team) => {
           return(
-          <DropdownMenuItem className="px-3 p-2 text-sm cursor-pointer">
+          <DropdownMenuItem key={team.id} onClick={() => router.push(`/dashboard/${team.id}`)} className={cn("px-3 p-2 text-sm cursor-pointer w-full", team.id === teamId && "bg-blue-600 text-white")}>
             {team.name}
           </DropdownMenuItem>)
         })}
@@ -29,16 +34,19 @@ const SidebarHeader = ({teams}: {teams: Team[]}) => {
           <Settings className="h-4 w-4 mr-2" />
           Settings
         </DropdownMenuItem>
-        <DropdownMenuItem className="px-3 p-2 text-sm cursor-pointer">
+        <DropdownMenuItem onClick={() => signOut()} className="px-3 p-2 text-sm cursor-pointer">
           <LogOut className="h-4 w-4 mr-2" />
           Logout
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem className="px-3 p-2 text-sm cursor-pointer">
-          <Logo />
+          <Avatar>
+            <AvatarImage src={user.image || ''} alt='user profile' />
+            {user.name && (<AvatarFallback>{user.name[0] + user.name[1]}</AvatarFallback>)}
+          </Avatar>
           <div className='ml-2 flex flex-col'>
-            <span className='text-sm font-bold text-white'>Chetan Chauhan</span>
-            <span className='text-xs text-muted-foreground'>chauhanchetan12789@gmail.com</span>
+            <span className='text-sm font-bold text-white'>{user.name}</span>
+            <span className='text-xs text-muted-foreground'>{user.email}</span>
           </div>
         </DropdownMenuItem>
       </DropdownMenuContent>
