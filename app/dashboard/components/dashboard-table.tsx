@@ -1,5 +1,6 @@
 "use client"
 import { ActionTooltip } from '@/components/action-tooltip';
+import RenameFileForm from '@/components/form/rename-file-form';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { format } from 'date-fns'

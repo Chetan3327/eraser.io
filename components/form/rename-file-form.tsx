@@ -1,21 +1,21 @@
 "use client"
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form"
-import * as z from 'zod'
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import axios from 'axios'
+import { zodResolver } from "@hookform/resolvers/zod";
+import { File } from "@prisma/client";
+import axios from 'axios';
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+import * as z from 'zod';
 
 const FormSchema = z.object({
   name: z.string().min(1, {
-    message: "Team name is required"
+    message: "File name is required"
   }),
 })
 
-const CreateTeamForm = () => {
+const RenameFileForm = ({file}: {file: File}) => {
   const router = useRouter()
   const form = useForm({
     resolver: zodResolver(FormSchema),
@@ -24,11 +24,14 @@ const CreateTeamForm = () => {
     }
   })
 
+  useEffect(() => {
+    form.setValue('name', file.name)
+  }, [form, file])
+
   const isLoading = form.formState.isSubmitting
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     try {
-      axios.post('/api/team', values)
-      router.push('/dashboard')
+      axios.put(`/api/file/${file.id}`, values)
       router.refresh()
     } catch (error) {
       console.log(error)
@@ -43,17 +46,15 @@ const CreateTeamForm = () => {
           name="name"
           render={(({field}) => (
             <FormItem>
-              <FormLabel>Team Name</FormLabel>
               <FormControl>
-                <Input disabled={isLoading} className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary' placeholder='Enter Team name' {...field} />
+                <Input disabled={isLoading} className='focus-visible:ring-0 focus-visible:ring-offset-0 border-none hover:border hover:border-primary' placeholder='Enter File name' {...field} />
               </FormControl>
             </FormItem>
           ))}
         />
-        <Button disabled={isLoading}>Create</Button>
       </form>
     </Form>
   )
 }
 
-export default CreateTeamForm
+export default RenameFileForm
