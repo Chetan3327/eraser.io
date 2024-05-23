@@ -8,8 +8,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 import Logo from '@/components/logo'
+import { useModal } from '@/hooks/use-modal-store'
 
 const SidebarHeader = ({teams, user, currentTeam}: {teams: Team[], user: User, currentTeam: Team}) => {
+  const {onOpen} = useModal()
   const router = useRouter()
   return (
     <DropdownMenu>
@@ -27,7 +29,7 @@ const SidebarHeader = ({teams, user, currentTeam}: {teams: Team[], user: User, c
           </DropdownMenuItem>)
         })}
         <DropdownMenuSeparator />
-        <DropdownMenuItem className="px-3 p-2 text-sm cursor-pointer">
+        <DropdownMenuItem onClick={() => onOpen('joinOrCreateTeam')} className="px-3 p-2 text-sm cursor-pointer">
           <Users className="h-4 w-4 mr-2" />
           Join or Create Team
         </DropdownMenuItem>

@@ -37,7 +37,7 @@ const CreateTeamForm = () => {
 
   return (
     <Form {...form}>
-      <form className="space-y-3" onSubmit={form.handleSubmit(onSubmit)}>
+      <form className="mt-10" onSubmit={form.handleSubmit(onSubmit)}>
         <FormField 
           control={form.control}
           name="name"
@@ -45,12 +45,12 @@ const CreateTeamForm = () => {
             <FormItem>
               <FormLabel>Team Name</FormLabel>
               <FormControl>
-                <Input disabled={isLoading} className='focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary' placeholder='Enter Team name' {...field} />
+                <Input disabled={isLoading} autoFocus className='md:w-[500px] focus-visible:ring-0 focus-visible:ring-offset-0 focus:border-primary' placeholder='Enter Team name' {...field} />
               </FormControl>
             </FormItem>
           ))}
         />
-        <Button disabled={isLoading}>Create</Button>
+        <Button className="mt-7 w-full" variant='primary' disabled={isLoading}>Create</Button>
       </form>
     </Form>
   )

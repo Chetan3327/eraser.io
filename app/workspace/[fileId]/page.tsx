@@ -43,10 +43,10 @@ const page = async ({params}: {params: {fileId: string}}) => {
 
       <div className='flex'>
         <div className='w-[50%] h-screen pt-14'>
-          {/* <Editor /> */}
+          <Editor />
         </div>
         <div className='w-[50%] h-screen pt-14'>
-          {/* <Canvas /> */}
+          <Canvas />
         </div>
       </div>
     </>

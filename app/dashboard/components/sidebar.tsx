@@ -29,7 +29,7 @@ const Sidebar = async ({teamId}: {teamId: string}) => {
   }
 
   return (
-    <div className='fixed flex flex-col left-0 top-0 border-r h-full w-72 p-3'>
+    <div className='fixed flex flex-col left-0 top-0 border-r h-full w-72 p-3 py-6 z-10'>
       <SidebarHeader currentTeam={team} user={user} teams={teams} />  
       <div className='flex flex-1' />
       <SidebarFooter team={team} />
