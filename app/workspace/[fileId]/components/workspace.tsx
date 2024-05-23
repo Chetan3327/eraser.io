@@ -8,6 +8,7 @@ import Canvas from './canvas'
 import { Link, Save } from 'lucide-react'
 import axios from 'axios'
 import { cn } from '@/lib/utils'
+import Editor from './editor'
 
 enum Tabs {
   DOCUMENT = "Document",
@@ -17,7 +18,7 @@ enum Tabs {
 
 const Workspace = ({file}: {file: File}) => {
   const [canvasData, setCanvasData] = useState<any>([])
-  const [activeTab, setActiveTab] = useState<Tabs>(Tabs.CANVAS)
+  const [activeTab, setActiveTab] = useState<Tabs>(Tabs.BOTH)
   const saveChanges = () => {
     axios.put(`/api/file/${file.id}/canvas`, {canvasData: JSON.stringify(canvasData, null, 2)})
   }
@@ -39,8 +40,8 @@ const Workspace = ({file}: {file: File}) => {
         </div>
       </div>
       <div className='flex'>
-        <div className={cn(`w-[50%] h-screen pt-14`, activeTab === 'Canvas' && 'hidden', activeTab === 'Document' && 'w-[100%]')}>
-          {/* <Editor /> */}
+        <div className={cn(`w-[50%] dark:bg-[#1f1f1f] h-screen pt-14`, activeTab === 'Canvas' && 'hidden', activeTab === 'Document' && 'w-[100%]')}>
+          <Editor />
         </div>
         <div className={cn(`w-[50%] h-screen pt-14`, activeTab === 'Document' && 'hidden', activeTab === 'Canvas' && 'w-[100%]')}>
           <Canvas file={file} setCanvasData={setCanvasData} />

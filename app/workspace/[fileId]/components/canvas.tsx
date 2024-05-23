@@ -11,11 +11,10 @@ import { useTheme } from 'next-themes';
 
 const Canvas = ({file, setCanvasData}: {file: File, setCanvasData: React.Dispatch<any>}) => {
   const initialData = file.whiteboard ? JSON.parse(file.whiteboard) : undefined
-  console.log(initialData)
   const {theme} = useTheme()
   const finalTheme = theme === 'system' || theme === 'dark' ? 'dark' : 'light';
   return (
-    <div style={{height: '800px'}}>
+    <div style={{height: '100%'}}>
       <Excalidraw theme={finalTheme} 
         initialData={{
           elements: initialData
