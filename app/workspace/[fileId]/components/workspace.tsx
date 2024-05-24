@@ -31,7 +31,7 @@ const Workspace = ({file}: {file: File}) => {
         </div>
         <div>
           {Object.values(Tabs).map((tab) => (
-            <Button onClick={() => setActiveTab(tab)} variant={tab === activeTab ? 'secondary' : 'outline'} className='rounded-none'>{tab}</Button>
+            <Button key={tab} onClick={() => setActiveTab(tab)} variant={tab === activeTab ? 'secondary' : 'outline'} className='rounded-none'>{tab}</Button>
           ))}
         </div>
         <div className='space-x-3'>
@@ -41,7 +41,7 @@ const Workspace = ({file}: {file: File}) => {
       </div>
       <div className='flex'>
         <div className={cn(`w-[50%] dark:bg-[#1f1f1f] h-screen pt-14`, activeTab === 'Canvas' && 'hidden', activeTab === 'Document' && 'w-[100%]')}>
-          <Editor />
+          <Editor file={file} />
         </div>
         <div className={cn(`w-[50%] h-screen pt-14`, activeTab === 'Document' && 'hidden', activeTab === 'Canvas' && 'w-[100%]')}>
           <Canvas file={file} setCanvasData={setCanvasData} />

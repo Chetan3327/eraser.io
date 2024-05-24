@@ -20,7 +20,7 @@ export async function PUT(req:Request, {params}: {params: {fileId: string}}){
     })
     return NextResponse.json(file, {status: 200})
   } catch (error) {
-    console.log('[fileId/canvas PUT]')
+    console.log('[fileId/editor PUT]', error)
     return NextResponse.json({message: 'error saving canvas data'}, {status: 500})
   }
 }
