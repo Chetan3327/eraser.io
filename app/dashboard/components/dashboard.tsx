@@ -28,7 +28,7 @@ const Dashboard = async ({teamId}: {teamId: string}) => {
     return redirect('/dashboard')
   }
   return (
-    <div className='ml-72 pt-20'>
+    <div className='lg:ml-72 pt-20'>
       <DashboardTable team={team} />
       {team.files.length === 0 && (
       <div className='text-muted-foreground/50 font-bold pt-12 flex justify-center items-center'>

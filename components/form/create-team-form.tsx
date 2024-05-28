@@ -27,8 +27,8 @@ const CreateTeamForm = () => {
   const isLoading = form.formState.isSubmitting
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     try {
-      axios.post('/api/team', values)
-      router.push('/dashboard')
+      const res = await axios.post('/api/team', values)
+      router.push(`/dashboard/${res.data.id}`)
       router.refresh()
     } catch (error) {
       console.log(error)

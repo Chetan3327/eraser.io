@@ -53,7 +53,7 @@ const DashboardTable = ({team}: {team: TeamWithFiles}) => {
             <TableCell>
               <ActionTooltip side='bottom' label={file.author.name || ""}>
                 <Avatar>
-                  <AvatarImage src={file.author.image || ""} />
+                  <AvatarImage referrerPolicy='no-referrer' src={file.author.image || ""} />
                   <AvatarFallback>{file.author.name}</AvatarFallback>
                 </Avatar>
               </ActionTooltip>

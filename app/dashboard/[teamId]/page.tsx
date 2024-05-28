@@ -14,8 +14,10 @@ const page = async ({params}: {params: {teamId: string}}) => {
   }
   return (
     <>
-      <Sidebar teamId={params.teamId} />
-      <DashboardHeader />
+      <aside className='hidden lg:flex'>
+        <Sidebar teamId={params.teamId} />
+      </aside>
+      <DashboardHeader teamId={params.teamId} />
       <Dashboard teamId={params.teamId} />
     </>
   )

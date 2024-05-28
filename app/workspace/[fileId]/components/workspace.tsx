@@ -34,7 +34,7 @@ const Workspace = ({file}: {file: File}) => {
             <Button key={tab} onClick={() => setActiveTab(tab)} variant={tab === activeTab ? 'secondary' : 'outline'} className='rounded-none'>{tab}</Button>
           ))}
         </div>
-        <div className='space-x-3'>
+        <div className='space-x-3 flex items-center'>
           <Button onClick={() => saveChanges()} variant='outline'>Save <Save className='w-4 h-4 ml-2' /></Button>
           <Button variant='primary'>Share <Link className='w-4 h-4 ml-2' /></Button>
         </div>
