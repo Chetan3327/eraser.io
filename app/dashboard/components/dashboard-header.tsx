@@ -29,7 +29,7 @@ const tabs = [
 const DashboardHeader = ({teamId}: {teamId: string}) => {
   return (
     <div className='fixed top-0 h-20 lg:pl-72 w-full bg-background'>
-      <div className='flex items-center h-full ml-5 justify-between pr-10'>
+      <div className='flex items-center h-full lg:pl-5 justify-between lg:pr-10'>
         <div className='flex space-x-2 items-center'>
           <MobileSidebar teamId={teamId} />
           {tabs.map((tab) => (
