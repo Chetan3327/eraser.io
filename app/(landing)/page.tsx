@@ -26,9 +26,9 @@ const page = async () => {
           </div>
         </div>
 
-        <div>
+        <div className='space-x-3'>
           <Link href={'/login'}><Button className='ml-auto' variant={'ghost'}>Log in</Button></Link>
-          <Link href={'/register'}><Button>Try Eraser <ArrowRight className='w-4 h-4 ml-2' /></Button></Link>
+          <Link href={'/register'}><Button>Try Eraser <ArrowRight className='w-4 h-4' /></Button></Link>
         </div>
       </div>
 

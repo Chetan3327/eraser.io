@@ -155,10 +155,10 @@ html, body, :root{
 
 @keyframes shadow-slide {
   from {
-    background: hsl(200, 100%, 45%); /* Darker bluish color */
+    background: hsl(200, 52%, 37%); /* Darker bluish color */
   }
   to {
-    background: hsl(200, 100%, 40%); /* Darker bluish color */
+    background: hsl(199, 45%, 34%); /* Darker bluish color */
   }
 }
 
