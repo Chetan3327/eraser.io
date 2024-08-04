@@ -139,3 +139,58 @@ html, body, :root{
     scrollbar-width: none;  /* Firefox */
   }
 }
+
+.shadow {
+  position: absolute;
+  background: hsl(201, 38%, 12%); /* Darker bluish color */
+  border-radius: 24px;
+  rotate: 35deg;
+
+  width: 260px;
+  top: 200px;
+  height: 400px;
+  filter: blur(150px);
+  animation: shadow-slide infinite 4s linear alternate;
+}
+
+@keyframes shadow-slide {
+  from {
+    background: hsl(200, 100%, 45%); /* Darker bluish color */
+  }
+  to {
+    background: hsl(200, 100%, 40%); /* Darker bluish color */
+  }
+}
+
+@media (max-width: 1024px) {
+  .shadow {
+    top: 70px;
+  }
+
+  @keyframes shadow-slide {
+    from {
+      background: hsl(200, 100%, 45%); /* Darker bluish color */
+    }
+    to {
+      background: hsl(200, 100%, 40%); /* Darker bluish color */
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .shadow {
+    top: 70px;
+    width: 100px;
+    height: 350px;
+    filter: blur(60px);
+  }
+
+  @keyframes shadow-slide {
+    from {
+      background: hsl(200, 100%, 45%); /* Darker bluish color */
+    }
+    to {
+      background: hsl(200, 100%, 40%); /* Darker bluish color */
+    }
+  }
+}
